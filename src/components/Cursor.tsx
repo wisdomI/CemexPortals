@@ -9,6 +9,11 @@ export default function Cursor() {
   const rafRef = useRef<number>();
 
   useEffect(() => {
+    const isTouchLikeDevice =
+      window.matchMedia("(hover: none), (pointer: coarse)").matches ||
+      "ontouchstart" in window;
+    if (isTouchLikeDevice) return;
+
     const handleMove = (e: MouseEvent) => {
       pos.current = { x: e.clientX, y: e.clientY };
       if (dotRef.current) {
@@ -59,6 +64,11 @@ export default function Cursor() {
       if (rafRef.current) cancelAnimationFrame(rafRef.current);
     };
   }, []);
+
+  const shouldHideCursor =
+    typeof window !== "undefined" &&
+    (window.matchMedia("(hover: none), (pointer: coarse)").matches || "ontouchstart" in window);
+  if (shouldHideCursor) return null;
 
   return (
     <div className="cursor">
