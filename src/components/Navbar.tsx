@@ -21,7 +21,15 @@ const tailLinks: Internal[] = [
   { label: "Contact", to: "/contact" },
 ];
 
-export default function Navbar({ scrollY }: { scrollY: number }) {
+export default function Navbar({
+  scrollY,
+  theme,
+  onToggleTheme,
+}: {
+  scrollY: number;
+  theme: "dark" | "light";
+  onToggleTheme: () => void;
+}) {
   const [menuOpen, setMenuOpen] = useState(false);
   const location = useLocation();
   const scrolled = scrollY > 60;
@@ -90,14 +98,30 @@ export default function Navbar({ scrollY }: { scrollY: number }) {
           ))}
         </ul>
 
-        <a
-          href="https://wa.me/2348181751602"
-          className="nav-cta"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <span>WhatsApp</span>
-        </a>
+        <div className="nav-actions">
+          <a
+            href="https://wa.me/2348181751602"
+            className="nav-cta"
+            target="_blank"
+            rel="noopener noreferrer"
+          >
+            <span>WhatsApp</span>
+          </a>
+
+          <button
+            type="button"
+            role="switch"
+            aria-checked={theme === "light"}
+            className="theme-switch theme-switch--desktop"
+            onClick={onToggleTheme}
+            aria-label={`Switch to ${theme === "dark" ? "light" : "dark"} mode`}
+          >
+            <span className="theme-switch-track">
+              <span className="theme-switch-thumb" />
+            </span>
+            <span className="theme-switch-label">{theme === "dark" ? "Dark" : "Light"}</span>
+          </button>
+        </div>
 
         <button
           className={`hamburger ${menuOpen ? "open" : ""}`}
@@ -115,6 +139,19 @@ export default function Navbar({ scrollY }: { scrollY: number }) {
       <div className={`mobile-menu ${menuOpen ? "open" : ""}`}>
         <div className="mobile-menu-inner">
           <div className="mobile-label">Navigation</div>
+          <button
+            type="button"
+            role="switch"
+            aria-checked={theme === "light"}
+            className="theme-switch theme-switch--mobile"
+            onClick={onToggleTheme}
+            aria-label={`Switch to ${theme === "dark" ? "light" : "dark"} mode`}
+          >
+            <span className="theme-switch-track">
+              <span className="theme-switch-thumb" />
+            </span>
+            <span className="theme-switch-label">{theme === "dark" ? "Dark mode" : "Light mode"}</span>
+          </button>
           <ul className="mobile-links">
             <li className={menuOpen ? "visible" : ""} style={{ transitionDelay: menuOpen ? "0.08s" : "0s" }}>
               <NavLink to="/" end className={mobileLinkClass} onClick={() => setMenuOpen(false)}>

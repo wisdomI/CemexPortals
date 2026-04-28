@@ -12,7 +12,7 @@
 }
 
 .navbar.scrolled {
-  background: rgba(8, 8, 8, 0.95);
+  background: var(--off-black);
   backdrop-filter: blur(20px);
   padding: 1.25rem 3rem;
   border-bottom: 1px solid var(--border);
@@ -29,6 +29,10 @@
   display: block;
   width: clamp(50px, 5vw, 50px);
   height: auto;
+}
+
+:root[data-theme="light"] .logo-image {
+  filter: brightness(0.14);
 }
 
 .logo-text {
@@ -54,6 +58,12 @@
   position: absolute;
   left: 50%;
   transform: translateX(-50%);
+}
+
+.nav-actions {
+  display: flex;
+  align-items: center;
+  gap: 0.65rem;
 }
 
 .nav-link {
@@ -115,7 +125,7 @@
   padding: 0.6rem 0;
   margin: 0;
   list-style: none;
-  background: rgba(14, 14, 14, 0.98);
+  background: var(--off-black);
   border: 1px solid var(--border);
   opacity: 0;
   visibility: hidden;
@@ -225,6 +235,61 @@
   background: var(--gold);
   color: var(--black);
   border-color: var(--gold);
+}
+
+.theme-switch {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  font-family: 'Space Mono', monospace;
+  font-size: 0.52rem;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  border: 1px solid var(--border);
+  color: var(--white-dim);
+  background: transparent;
+  padding: 0.42rem 0.55rem;
+  transition: color 0.25s ease, border-color 0.25s ease, background 0.25s ease;
+}
+
+.theme-switch-track {
+  position: relative;
+  width: 34px;
+  height: 18px;
+  border-radius: 999px;
+  background: rgba(245, 127, 69, 0.15);
+  border: 1px solid rgba(245, 127, 69, 0.35);
+  transition: background 0.25s ease, border-color 0.25s ease;
+}
+
+.theme-switch-thumb {
+  position: absolute;
+  left: 2px;
+  top: 2px;
+  width: 12px;
+  height: 12px;
+  border-radius: 50%;
+  background: var(--gold);
+  transition: transform 0.25s ease;
+}
+
+.theme-switch[aria-checked="true"] .theme-switch-thumb {
+  transform: translateX(16px);
+}
+
+.theme-switch:hover {
+  color: var(--gold);
+  border-color: rgba(245, 127, 69, 0.5);
+}
+
+.theme-switch-label {
+  font-family: 'Space Mono', monospace;
+  line-height: 1;
+}
+
+.theme-switch--mobile {
+  margin-bottom: 1rem;
+  width: fit-content;
 }
 
 /* Hamburger */
@@ -358,7 +423,7 @@
 }
 
 @media (max-width: 900px) {
-  .nav-links, .nav-cta {
+  .nav-links, .nav-actions {
     display: none;
   }
   .hamburger {
@@ -374,5 +439,8 @@
     opacity: 0;
     visibility: hidden;
     pointer-events: none;
+  }
+  .theme-switch {
+    padding: 0.45rem 0.6rem;
   }
 }

@@ -33,6 +33,10 @@
   height: auto;
 }
 
+:root[data-theme="light"] .footer-logo-image {
+  filter: brightness(0.14);
+}
+
 .footer-logo-text {
   font-family: 'Cormorant Garamond', serif;
   font-size: 2rem;
