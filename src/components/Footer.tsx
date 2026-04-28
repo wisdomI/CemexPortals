@@ -70,7 +70,17 @@ export default function Footer() {
 
       <div className="footer-bottom">
         <span>© Cemex Portals 2025. All Rights Reserved.</span>
-        <span className="footer-credit">Designed and built by Mabelpraise</span>
+        <span className="footer-credit">
+          Designed and built by{" "}
+          <a
+            href="https://devcraftstudio.xyz/"
+            className="footer-credit-link text-xl font-bold"
+            target="_blank"
+            rel="noopener noreferrer"
+          >
+            Devcraft Studios
+          </a>
+        </span>
       </div>
     </footer>
   );
