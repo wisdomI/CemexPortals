@@ -1,4 +1,5 @@
 import { useState } from "react";
+import { Link } from "react-router-dom";
 import { useReveal } from "../hooks/useReveal";
 import "./Services.css";
 
@@ -6,6 +7,7 @@ const services = [
   {
     num: "01",
     title: "Architectural Design",
+    anchor: "architectural-design",
     desc: "From blueprints to finished spaces, we translate vision into safe, efficient layouts—where daylight, circulation, and proportion elevate how people live and work.",
     img: "https://cemexportals.com/wp-content/uploads/2022/01/Architecture.jpg",
     tags: ["Architecture", "Concept development", "Design documentation"],
@@ -13,6 +15,7 @@ const services = [
   {
     num: "02",
     title: "Structural Design",
+    anchor: "structural-engineering",
     desc: "Structural systems engineered for performance and longevity—supporting ambitious architecture with clarity, compliance, and constructability in mind.",
     img: "https://cemexportals.com/wp-content/uploads/2022/01/Fagbem-Station-..jpg",
     tags: ["Structural design", "Engineering coordination", "Technical review"],
@@ -20,6 +23,7 @@ const services = [
   {
     num: "03",
     title: "Construction",
+    anchor: "construction",
     desc: "Full-service construction development delivered with rigorous site leadership—coordinating trades, quality, and schedule so luxury residences and commercial spaces meet the brief.",
     img: "https://cemexportals.com/wp-content/uploads/2022/01/Delight-Res.-scaled.jpg",
     tags: ["Construction", "Site execution", "Project delivery"],
@@ -27,6 +31,7 @@ const services = [
   {
     num: "04",
     title: "Interior Decoration",
+    anchor: "interior-decoration",
     desc: "Interior design and decoration layered with material palettes, bespoke fittings, and refined detail—tailored for discerning residential and commercial clients.",
     img: "https://cemexportals.com/wp-content/uploads/2022/01/Interior.jpg",
     tags: ["Interior design", "Decoration", "FF&E direction"],
@@ -50,8 +55,9 @@ export default function Services() {
 
       <div className="services-list">
         {services.map((s, i) => (
-          <div
+          <Link
             key={i}
+            to={`/our-services#${s.anchor}`}
             className={`service-item reveal delay-${i % 3 + 1}`}
             onMouseEnter={() => setHovered(i)}
             onMouseLeave={() => setHovered(null)}
@@ -76,7 +82,7 @@ export default function Services() {
                 <path d="M4 10h12M10 4l6 6-6 6" stroke="currentColor" strokeWidth="1.2" strokeLinecap="round" strokeLinejoin="round"/>
               </svg>
             </div>
-          </div>
+          </Link>
         ))}
       </div>
     </section>

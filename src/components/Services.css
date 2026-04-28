@@ -38,6 +38,8 @@
   overflow: hidden;
   cursor: none;
   transition: background 0.3s ease;
+  text-decoration: none;
+  color: inherit;
 }
 
 .service-item:first-child {

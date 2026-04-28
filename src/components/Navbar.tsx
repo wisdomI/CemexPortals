@@ -45,7 +45,7 @@ export default function Navbar({ scrollY }: { scrollY: number }) {
   return (
     <>
       <nav className={`navbar ${scrolled ? "scrolled" : ""}`}>
-        <Link to="/" className="nav-logo" aria-label="Cemex Portals">
+        <Link to="/" className={`nav-logo ${menuOpen ? "menu-open" : ""}`} aria-label="Cemex Portals">
           <img src="/cemex-logo-light.png" alt="Cemex Portals" className="logo-image" />
         </Link>
 
